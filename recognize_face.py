@@ -14,6 +14,7 @@ Date: 6-11-20
 Code Version: N/A
 Availability: https://www.youtube.com/watch?v=sz25xxF_AVE&t=957s
 """
+import sys
 
 import cv2
 from djitellopy import tello
@@ -98,8 +99,10 @@ def run_tello_video(drone):
         faceRec(frame)
         cv2.imshow("Frame", frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-    cv2.destroyAllWindows()
+            cv2.destroyAllWindows()
+            print("Ending the Tello Object...")
+            drone.end()
+            sys.exit("Tello Object Deleted. Exiting the code with sys.exit()!")
 
 def main():
     # Connect to the drone and start receiving video
